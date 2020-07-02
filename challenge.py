@@ -223,7 +223,7 @@ def Module8_Challenge(wikipedia_data, kaggle_metadata, ratings):
     start_time = time.time()
     for data in pd.read_csv(f'{file_dir}ratings.csv', chunksize=1000000):
         print(f'importing rows {rows_imported} to {rows_imported + len(data)}...', end='')
-        data.to_sql(name='ratings', con=engine, if_exists='append')
+        data.to_sql(name='ratings', con=engine, if_exists='replace')
         rows_imported += len(data)
         print(f'Done. {time.time() - start_time} total seconds elapsed')
     
